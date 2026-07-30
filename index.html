@@ -56,6 +56,18 @@
   .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:600px){.menu-grid{grid-template-columns:1fr}}
+  /* SHARE PANEL */
+  .share-panel{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between;margin-top:34px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .share-panel .sp-left{flex:1;min-width:240px}
+  .share-panel h3{font-size:18px;text-transform:uppercase;margin-bottom:6px}
+  .share-panel .sp-sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .share-row{display:flex;gap:0;max-width:440px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .share-row input{flex:1;background:transparent;border:none;outline:none;color:var(--text);padding:11px 14px;font-size:13px;font-family:inherit;min-width:0}
+  .copy-btn{background:var(--gold);color:#0c0e0b;border:none;padding:0 18px;font-weight:700;font-size:14px;cursor:pointer;font-family:"Oswald";letter-spacing:1px;white-space:nowrap}
+  .copy-btn:hover{background:var(--gold-bright)}
+  .share-panel .qr{width:108px;height:108px;border-radius:8px;background:#f3e9c8;padding:6px;flex-shrink:0}
+  .toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:var(--olive);color:#0c0e0b;padding:12px 22px;border-radius:30px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:200}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .dish{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;cursor:pointer;transition:.2s;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:148px}
   .dish:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.5)}
   .dish .ico{font-size:30px;margin-bottom:12px}
@@ -153,6 +165,32 @@
   .disclaimer{max-width:760px;margin:12px auto 0;font-size:12px;color:#7c8268;line-height:1.7}
   #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--olive),var(--gold));width:0;z-index:99;transition:width .15s}
 </style>
+  /* MOD CODE LIBRARY */
+  .codes-note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:8px 0 22px;font-size:13.5px;color:var(--muted);line-height:1.8}
+  .codes-note b{color:var(--gold-bright)}
+  .cat-h{font-size:20px;text-transform:uppercase;letter-spacing:1px;margin:30px 0 14px;border-left:4px solid var(--gold);padding-left:12px}
+  .wgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:820px){.wgrid{grid-template-columns:1fr}}
+  .wcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .wh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .wh h3{font-size:17px}
+  .mode{font-size:11px;padding:2px 8px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+  .mode.bw{color:#9fd0ff;border-color:#2a4a66}
+  .mode.fh{color:#ffb287;border-color:#5a3320}
+  .cfg{border-top:1px dashed var(--line);padding:11px 0}
+  .cfg:first-of-type{border-top:none;padding-top:0}
+  .cfg-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .cc{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:#e7d9a8;letter-spacing:.5px;flex:1;min-width:220px;word-break:break-all}
+  .cpy{background:var(--olive);color:#0c0e0b;border:none;padding:7px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:13px;white-space:nowrap}
+  .cpy:hover{background:var(--gold)}
+  .src{font-size:12px;color:var(--muted);width:100%}
+  .src a{color:#9fd0ff}
+  .cfg-data{font-size:13px;margin-top:8px;line-height:1.7;color:#d9d4c4}
+  .tag-d{display:inline-block;background:rgba(196,160,58,.16);color:var(--gold-bright);border-radius:4px;padding:1px 7px;margin-right:6px;font-size:12px;font-weight:600}
+  /* BGM */
+  .bgm-btn{position:fixed;right:18px;bottom:20px;z-index:160;width:48px;height:48px;border-radius:50%;background:var(--olive);color:#0c0e0b;border:none;font-size:20px;cursor:pointer;box-shadow:0 5px 16px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;transition:.2s}
+  .bgm-btn:hover{background:var(--gold);transform:scale(1.06)}
+  .bgm-btn.on{background:var(--gold)}
 </head>
 <body>
 <div id="progress"></div>
@@ -185,7 +223,7 @@
 
   <div class="catalog wrap">
     <div class="cat-head">
-      <div><h2>全部攻略</h2><div class="sub">共 10 篇 · 点击任意卡片查看详情</div></div>
+      <div><h2>全部攻略</h2><div class="sub">共 11 篇 · 点击任意卡片查看详情</div></div>
     </div>
     <div class="menu-grid" id="menu">
       <div class="dish" data-view="v-overview" data-k="概览 入门 是什么">
@@ -210,6 +248,12 @@
         <span class="lv">进阶</span><span class="em">🔫</span>
         <span class="ico">🔫</span><h3>武器与改枪</h3>
         <p>枪械分类、配件选择与压枪思路，打造稳定输出。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-codes" data-k="改枪码 配装 武器码 枪械代码 导入 全面战场 烽火地带 AK M4 AWM">
+        <span class="lv">资料</span><span class="em">🔧</span>
+        <span class="ico">🔧</span><h3>改枪码库</h3>
+        <p>各枪专属改枪码，含来源与改枪后数据，一键复制导入。</p>
         <div class="go">查看攻略 →</div>
       </div>
       <div class="dish" data-view="v-maps" data-k="地图 点位 大坝 溪谷 巴克什 航天 监狱">
@@ -248,6 +292,18 @@
         <p>高频疑问速查，少走弯路。</p>
         <div class="go">查看攻略 →</div>
       </div>
+    </div>
+
+    <div class="share-panel">
+      <div class="sp-left">
+        <h3>分享这个攻略站</h3>
+        <div class="sp-sub">把链接发给朋友，或扫二维码用手机打开。</div>
+        <div class="share-row">
+          <input id="shareUrl" type="text" readonly value="https://jingsiwangshi.github.io/delta-force-guide/">
+          <button class="copy-btn" onclick="copyShare()">复制链接</button>
+        </div>
+      </div>
+      <img class="qr" src="assets/qr.png" alt="扫码打开攻略站">
     </div>
   </div>
 </div>
@@ -532,6 +588,361 @@
   </div>
 </div>
 
+<!-- 改枪码库 -->
+<div class="view" id="v-codes">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>改枪码库</b></div>
+    <h1>改枪码库</h1><div class="bar"></div>
+    <p class="lead">每把枪的专属改枪码，附来源与改枪后数据，点「复制」即可导入游戏。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="codes-note">
+      <b>怎么用：</b>游戏内进入武器改装界面 → 找到「导入改枪码」→ 粘贴下方代码 → 一键套用。<br>
+      <b>模式：</b><span style="color:#9fd0ff">全面战场</span> 与 <span style="color:#ffb287">烽火地带</span> 的改枪码不通用，导入前看清标签。数值随赛季变动，以游戏内实测为准。<br>
+      <b>来源：</b>代码均为社区玩家/主播分享，每张卡片标注了出处链接，方便你追更与核对。
+    </div>
+
+    <div class="cat-h">突击步枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>AKM</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIAL2G02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz 改装代码大全2025</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>威力大、后坐强，这套配件有效压枪，中距离对枪稳。<br><span class="tag-d">配件</span>钛金制退器·海狸长枪管·PK-0前握把·蟒蛇护木片·40发弹匣·镂空握把·影袭枪托·红镭射·1倍镜</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>AK-12</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJJN0G0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover T0神枪改枪码</a></span></div>
+          <div class="cfg-data"><span class="tag-d">红点稳定版</span>后坐据枪很稳，50m 内压枪稳，45 弹匣，伤害衰减不高。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJJJGO0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button></div>
+          <div class="cfg-data"><span class="tag-d">大弹鼓版</span>75 发弹匣，近距离持续收割更爽。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJJT1C0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button></div>
+          <div class="cfg-data"><span class="tag-d">三倍镜版</span>后坐 84，70m 内有控枪仍稳，超过距离别一直连射。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6G5QLOC0B47DBPRUAR75R</code><button class="cpy" onclick="copyCode(this)">复制</button></div>
+          <div class="cfg-data"><span class="tag-d">均衡红点版</span>数值均衡，据枪略抖但后坐稳定，45 发够扫射。</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>AS Val</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIAKVC02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>近中距离爆发极强、穿透高。长枪管·红镭射·RK-0前握把·45发弹匣·天蝎后握把·稳固枪托·1倍镜</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6GCI31407ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树自用（烽火·50W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 50 万，主播林树烽火地带自用配装。</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>腾龙突击步枪</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKEQK0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（45发常规版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>标准改法，属性均衡好上手。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKFN80FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（30发火力版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>先进多口径消音器，属性完美契合腾龙。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKG8K0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（大弹鼓版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>60 发大弹鼓，50m 内没有毛病，后坐与腰射提升。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6GVGL640BUSDVQP3857JE</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 50 万烽火地带配装。</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>HK416 / K416</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6FTTLTK07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 50 万。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H9EAMS07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（低价位）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>30~40 万低价位版。</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>KC17</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H3HEJC02DPSF0NMUGMIN</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 60 万。</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>K437</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H34IJC07JARDF32CHE1I</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 50 万。</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>PTR-32</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIAKTC02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>兼顾压枪稳定与持续火力，中距离输出。钛金制退器·密令斜角握把·40发弹匣·影袭枪托·G3加强长枪管·组合护木·红镭射</div>
+        </div>
+      </article>
+
+      <article class="wcard">
+        <div class="wh"><h3>ASh-12 战斗步枪</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6GH3908064HLT38PTSGJ8</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 50 万，近距离高伤害。</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cat-h">冲锋枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>SMG-45</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6GT99F8001UAG24PPPV0T</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·30W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 30 万。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>MP7</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6FVLU2G07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·40W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 40 万。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>P90</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H1HI140B9I04M2JUJ0H8</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·40W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 40 万。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>SR-3M 紧凑突击步枪</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6F6Q83O07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 60 万。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H9EBEK07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（低价位）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 30 万低价位版。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>UZI</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIALBS02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>射速极快、压制力强，适合跑动作战。钛金制退器·导轨护木·红激光·CR阻手器·45发弹匣·影袭托芯枪托·1.5倍侦查镜</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cat-h">轻机枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>M249</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIAV5802U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>便携机枪，持续压制。钛金制退器·海湾短枪管·CR阻手器·45发弹匣·特战枪托·激光·1倍镜</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>QJB201 轻机枪</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKI240FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（白热成像架点版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>201新式重锤战术枪管+白热成像+125发，架点收割神器。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKLI40FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（稳定二倍版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>操控更灵活，但远距离衰减明显。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKLT00FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（步枪版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>后坐/操控/据枪/射程全低，打起来像激光枪，可当突击位。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>PKM 通用机枪</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6G4BP6O068FPPKG0SPCQ9</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 50 万。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H7R3S00BI66M9G2OV3QF</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（盖板版·30W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 30 万。</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cat-h">战斗步枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>M7 战斗步枪</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJK9580FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（红点稳定版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>数值暴力、秒杀强，优势射程内无毛病。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HJKB7S0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（火控版）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>据枪稳定 73，100m 内基本稳压，架高点开镜即可。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H57F9S07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·消音·60W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 60 万。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6H52MG807ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·普通·60W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 60 万。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>SCAR-H</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIAUAK02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>精准度与伤害兼备，远程利器。钛金制退器·海狸长枪管·共振人体·50发弹匣·蟒蛇护木·幻影后握把·影袭枪托·1.5倍侦查镜</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cat-h">射手步枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>M14</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIBB2C02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz（全面战场）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>半自动精确射击，输出稳定。钛金制退器·超长枪管·共振人体·蟒蛇护木·30发弹匣·影袭枪托·M14先进枪身·增高架一倍镜·红激光</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HBQ3GK0AN3IA18KU684Q</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·70W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 70 万。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>PSG-1</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIBEK802U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz（全面战场）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>高精度射击，适合远程狙击防守。沙暴垂直·加强长枪管·人体共振·30发弹匣·镂空握把·PSG-1扳机·骨架狙击枪托·3.5倍镜·蟒蛇护木片·红激光</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HCM8UK0285EKE7L5LPSH</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·40W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 40 万。</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cat-h">狙击枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>AWM</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6GCOMIO03HDN3EE1QTI4I</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 60 万。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HTGFES085N96GKA2CUSU</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="http://www.hawagame.com/wiki/20272.html" target="_blank" rel="noopener">hawagame S7（65W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">数据</span>消音器+垂直握把+8倍镜+5发弹匣+重型枪托；无射程衰减，头胸一枪倒，超远压制。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>M700</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6FG5OGC051CKRTT084FIR</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">价值</span>约 60 万。</div>
+        </div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HTGA3S085N96GKA2CU5U</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="http://www.hawagame.com/wiki/20272.html" target="_blank" rel="noopener">hawagame S7（35W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">数据</span>消音器+垂直握把+高倍镜(8倍)+弹匣优化；开镜快、子弹无下坠，适合中近速射。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>SV-98</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HTHQBG085N96GKA2CU5U</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="http://www.hawagame.com/wiki/20272.html" target="_blank" rel="noopener">hawagame S7（17W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">数据</span>消音器+垂直握把+6倍镜+7发弹匣+重型枪托；高性价比，适合中远精准狙杀。</div>
+        </div>
+      </article>
+      <article class="wcard">
+        <div class="wh"><h3>R93</h3><span class="mode fh">烽火地带</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6HTHQ30085N96GKA2GU5U</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="http://www.hawagame.com/wiki/20272.html" target="_blank" rel="noopener">hawagame S7（27W）</a></span></div>
+          <div class="cfg-data"><span class="tag-d">数据</span>消音器+垂直握把+6倍镜+7发弹匣+重型枪托；中远精准狙杀，隐蔽稳定，新手首选。</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="cat-h">霰弹枪</div>
+    <div class="wgrid">
+      <article class="wcard">
+        <div class="wh"><h3>S12K</h3><span class="mode bw">全面战场</span></div>
+        <div class="cfg">
+          <div class="cfg-top"><code class="cc">6EIAL9C02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
+            <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
+          <div class="cfg-data"><span class="tag-d">特点</span>霰弹速射流，扫清近身威胁。实用收束器·实用短枪管·竞赛阻手器·24发弹匣·镂空后握把·AK枪托尾盖·双增高架+激光</div>
+        </div>
+      </article>
+    </div>
+
+    <div class="note">声明：以上改枪码均来自公开社区分享（mopxz / vgover / 3DM 林树 / hawagame），随游戏版本迭代可能失效或数值变化，请以游戏内实测为准；如涉及原作者权益，请联系删除。</div>
+  </div>
+</div>
+
 <footer>
   <div class="wrap">
     <div class="brand" style="justify-content:center">DELTA FORCE<span class="tag">攻略</span></div>
@@ -575,6 +986,49 @@
     const h=document.documentElement;
     prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
   });
+  // share: copy link
+  const SHARE_URL="https://jingsiwangshi.github.io/delta-force-guide/";
+  let toastTimer;
+  function toast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>t.classList.remove('show'),1800);
+  }
+  function copyShare(){
+    const url=SHARE_URL;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(()=>toast('链接已复制 ✓')).catch(()=>fallbackCopy(url));
+    } else { fallbackCopy(url); }
+  }
+  function fallbackCopy(text){
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try{ document.execCommand('copy'); toast('链接已复制 ✓'); }
+    catch(e){ toast('复制失败，请长按链接手动复制'); }
+    document.body.removeChild(ta);
+  }
+  // mod code copy
+  function copyCode(btn){
+    const code=btn.closest('.cfg-top').querySelector('.cc').textContent.trim();
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(()=>toast('改枪码已复制 ✓')).catch(()=>fallbackCopy(code));
+    } else { fallbackCopy(code); }
+  }
+  // background music
+  const bgm=document.getElementById('bgm');
+  const bgmBtn=document.getElementById('bgmBtn');
+  let bgmOn=false;
+  bgm.addEventListener('error',()=>{ if(!bgmOn) return; toast('未找到 BGM 文件：请把音频放到 assets/bgm.mp3'); });
+  function toggleBgm(){
+    if(bgmOn){ bgm.pause(); bgmOn=false; bgmBtn.textContent='♪'; bgmBtn.classList.remove('on'); return; }
+    bgm.play().then(()=>{ bgmOn=true; bgmBtn.textContent='⏸'; bgmBtn.classList.add('on'); })
+      .catch(()=>toast('未找到 BGM 文件：请把音频放到 assets/bgm.mp3'));
+  }
 </script>
+<div class="toast" id="toast"></div>
+<button class="bgm-btn" id="bgmBtn" onclick="toggleBgm()" title="背景音乐">♪</button>
+<audio id="bgm" loop preload="none" src="assets/bgm.wav"></audio>
 </body>
 </html>
