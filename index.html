@@ -164,6 +164,11 @@
   footer{background:var(--bg-soft);padding:40px 0 56px;text-align:center;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line)}
   .disclaimer{max-width:760px;margin:12px auto 0;font-size:12px;color:#7c8268;line-height:1.7}
   #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--olive),var(--gold));width:0;z-index:99;transition:width .15s}
+
+.op-img{height:150px;overflow:hidden;background:#0c0f08;border-bottom:1px solid var(--line)}
+.op-img img{width:100%;height:100%;object-fit:cover;object-position:center 16%;display:block}
+.gun-ico{width:56px;height:22px;flex:0 0 auto;color:#aebd6e;opacity:.92}
+.wgun{width:28px;height:18px;vertical-align:middle;margin-right:7px;color:#aebd6e;opacity:.92}
 </style>
   /* MOD CODE LIBRARY */
   .codes-note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:8px 0 22px;font-size:13.5px;color:var(--muted);line-height:1.8}
@@ -308,6 +313,43 @@
   </div>
 </div>
 
+<svg class="gun-sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+<symbol id="gun-ar" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="3,21 22,19 24,26 7,30"/><rect x="22" y="18" width="36" height="9" rx="2"/>
+<rect x="56" y="20" width="52" height="5" rx="2"/><rect x="108" y="20" width="6" height="5" rx="1"/>
+<polygon points="40,27 52,27 49,41 44,41"/><polygon points="45,27 58,27 55,42 47,42"/>
+<rect x="90" y="15" width="3" height="6"/></g></symbol>
+<symbol id="gun-smg" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="4,22 20,20 22,27 8,30"/><rect x="20" y="19" width="28" height="9" rx="2"/>
+<rect x="48" y="21" width="40" height="5" rx="2"/><rect x="88" y="21" width="6" height="5" rx="1"/>
+<polygon points="34,28 44,28 41,40 37,40"/><polygon points="34,28 50,28 47,44 36,44"/></g></symbol>
+<symbol id="gun-lmg" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="2,20 22,19 24,27 6,30"/><rect x="22" y="18" width="34" height="9" rx="2"/>
+<rect x="56" y="20" width="58" height="5" rx="2"/><rect x="114" y="20" width="5" height="5" rx="1"/>
+<rect x="40" y="27" width="16" height="13" rx="2"/>
+<polygon points="74,25 78,25 78,40 74,40"/><polygon points="84,25 88,25 88,40 84,40"/></g></symbol>
+<symbol id="gun-br" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="3,21 22,19 24,26 7,30"/><rect x="22" y="18" width="34" height="9" rx="2"/>
+<rect x="56" y="20" width="58" height="5" rx="2"/><rect x="114" y="20" width="5" height="5" rx="1"/>
+<rect x="34" y="11" width="22" height="6" rx="2"/>
+<polygon points="40,27 52,27 49,41 44,41"/><polygon points="45,27 58,27 55,42 47,42"/></g></symbol>
+<symbol id="gun-dmr" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="3,21 22,19 24,26 7,30"/><rect x="22" y="18" width="34" height="9" rx="2"/>
+<rect x="56" y="20" width="56" height="5" rx="2"/><rect x="112" y="20" width="6" height="5" rx="1"/>
+<rect x="30" y="9" width="34" height="7" rx="2"/>
+<polygon points="40,27 52,27 49,41 44,41"/><polygon points="45,27 58,27 55,42 47,42"/></g></symbol>
+<symbol id="gun-sniper" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="2,22 18,22 20,28 6,30"/><rect x="18" y="20" width="30" height="8" rx="2"/>
+<rect x="48" y="21" width="66" height="4" rx="2"/><rect x="114" y="21" width="5" height="4" rx="1"/>
+<rect x="40" y="8" width="40" height="9" rx="3"/>
+<polygon points="34,28 44,28 41,40 37,40"/></g></symbol>
+<symbol id="gun-shotgun" viewBox="0 0 120 48"><g fill="currentColor">
+<polygon points="2,20 22,20 24,28 8,30"/><rect x="22" y="18" width="26" height="10" rx="2"/>
+<rect x="48" y="19" width="44" height="4" rx="2"/><rect x="48" y="24" width="44" height="4" rx="2"/>
+<rect x="92" y="21" width="6" height="6" rx="1"/>
+<polygon points="34,28 46,28 43,42 38,42"/></g></symbol>
+</svg>
+
 <!-- ============ DETAIL VIEWS ============ -->
 
 <!-- 概览 -->
@@ -393,12 +435,12 @@
   </div></div>
   <div class="detail-body wrap">
     <div class="grid g3">
-      <div class="op"><div class="top"><div class="role">侦察 RECON</div><h3>露娜 Luna</h3></div><div class="body">远程信息位，技能可标记敌人位置共享全队。<b>适合架枪、控图与报点。</b><div class="skill">招牌：侦察箭/传感装置，暴露范围内敌人轮廓，是团队「眼睛」。</div></div></div>
-      <div class="op"><div class="top"><div class="role">突击 ASSAULT</div><h3>红狼 Red Wolf</h3></div><div class="body">高机动近战突破手，技能快速位移接敌/脱离。<b>适合绕后、抢点与残局。</b><div class="skill">招牌：钩爪位移 + 爆发状态，短时大幅提升机动与火力。</div></div></div>
-      <div class="op"><div class="top"><div class="role">支援 SUPPORT</div><h3>牧羊人 Shepherd</h3></div><div class="body">团队续航核心，技能探测敌方并扰乱。<b>适合占点、保人与控场。</b><div class="skill">招牌：声波无人机，侦测开火敌人并施加干扰/削弱。</div></div></div>
-      <div class="op"><div class="top"><div class="role">侦察 RECON</div><h3>蜂医 Hackclaw</h3></div><div class="body">带侦察犬的情报/支援位。<b>适合探点、标记与快速救援。</b><div class="skill">招牌：侦察犬自动巡逻标记敌人，并具备救援能力。</div></div></div>
-      <div class="op"><div class="top"><div class="role">突击 ASSAULT</div><h3>泰瑞 Terry</h3></div><div class="body">灵活突击位，强调快速接敌与压制。<b>适合正面突破与火力覆盖。</b><div class="skill">招牌：高机动位移 + 范围压制，制造局部人数优势。</div></div></div>
-      <div class="op"><div class="top"><div class="role">突击 ASSAULT</div><h3>凯 Kai</h3></div><div class="body">爆发输出位，擅长区域清理。<b>适合清房、压制掩体后敌人。</b><div class="skill">招牌：范围杀伤/压制型技能，对固守之敌效果显著。</div></div></div>
+      <div class="op"><div class="op-img"><img src="assets/ops/luna.png" alt="露娜 Luna"></div><div class="top"><div class="role">侦察 RECON</div><h3>露娜 Luna</h3></div><div class="body">远程信息位，技能可标记敌人位置共享全队。<b>适合架枪、控图与报点。</b><div class="skill">招牌：侦察箭/传感装置，暴露范围内敌人轮廓，是团队「眼睛」。</div></div></div>
+      <div class="op"><div class="op-img"><img src="assets/ops/redwolf.png" alt="红狼 Red Wolf"></div><div class="top"><div class="role">突击 ASSAULT</div><h3>红狼 Red Wolf</h3></div><div class="body">高机动近战突破手，技能快速位移接敌/脱离。<b>适合绕后、抢点与残局。</b><div class="skill">招牌：钩爪位移 + 爆发状态，短时大幅提升机动与火力。</div></div></div>
+      <div class="op"><div class="op-img"><img src="assets/ops/shepherd.png" alt="牧羊人 Shepherd"></div><div class="top"><div class="role">支援 SUPPORT</div><h3>牧羊人 Shepherd</h3></div><div class="body">团队续航核心，技能探测敌方并扰乱。<b>适合占点、保人与控场。</b><div class="skill">招牌：声波无人机，侦测开火敌人并施加干扰/削弱。</div></div></div>
+      <div class="op"><div class="op-img"><img src="assets/ops/hackclaw.png" alt="蜂医 Hackclaw"></div><div class="top"><div class="role">侦察 RECON</div><h3>蜂医 Hackclaw</h3></div><div class="body">带侦察犬的情报/支援位。<b>适合探点、标记与快速救援。</b><div class="skill">招牌：侦察犬自动巡逻标记敌人，并具备救援能力。</div></div></div>
+      <div class="op"><div class="op-img"><img src="assets/ops/terry.png" alt="泰瑞 Terry"></div><div class="top"><div class="role">突击 ASSAULT</div><h3>泰瑞 Terry</h3></div><div class="body">灵活突击位，强调快速接敌与压制。<b>适合正面突破与火力覆盖。</b><div class="skill">招牌：高机动位移 + 范围压制，制造局部人数优势。</div></div></div>
+      <div class="op"><div class="op-img"><img src="assets/ops/kai.png" alt="凯 Kai"></div><div class="top"><div class="role">突击 ASSAULT</div><h3>凯 Kai</h3></div><div class="body">爆发输出位，擅长区域清理。<b>适合清房、压制掩体后敌人。</b><div class="skill">招牌：范围杀伤/压制型技能，对固守之敌效果显著。</div></div></div>
     </div>
     <div class="note">组队建议：1 侦察（报点）+ 1 支援（续航）+ 2 突击（输出）是通用万金油阵容。撤离模式里侦察位优先级最高。</div>
   </div>
@@ -417,12 +459,12 @@
       <table>
         <thead><tr><th>类别</th><th>定位</th><th>代表枪型</th><th>适用场景</th></tr></thead>
         <tbody>
-          <tr><td><b>突击步枪</b></td><td>全能主力</td><td>AKM/M4/HK416/AUG</td><td>中近距离通用，最推荐新手</td></tr>
-          <tr><td><b>冲锋枪</b></td><td>近战爆发</td><td>MP5/Vector/P90</td><td>室内/巷战/CQB</td></tr>
-          <tr><td><b>轻机枪</b></td><td>压制火力</td><td>M249/M250</td><td>架点/守撤离/载具对枪</td></tr>
-          <tr><td><b>射手步枪</b></td><td>中远半自动</td><td>M14/SVD</td><td>中距离精准打击</td></tr>
-          <tr><td><b>狙击枪</b></td><td>远程秒杀</td><td>M700/AWM</td><td>架点控图、配合露娜</td></tr>
-          <tr><td><b>霰弹枪</b></td><td>贴脸秒</td><td>多型号</td><td>守房/近身防守</td></tr>
+          <tr><td><svg class="wgun" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><b>突击步枪</b></td><td>全能主力</td><td>AKM/M4/HK416/AUG</td><td>中近距离通用，最推荐新手</td></tr>
+          <tr><td><svg class="wgun" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-smg"/></svg><b>冲锋枪</b></td><td>近战爆发</td><td>MP5/Vector/P90</td><td>室内/巷战/CQB</td></tr>
+          <tr><td><svg class="wgun" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-lmg"/></svg><b>轻机枪</b></td><td>压制火力</td><td>M249/M250</td><td>架点/守撤离/载具对枪</td></tr>
+          <tr><td><svg class="wgun" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-dmr"/></svg><b>射手步枪</b></td><td>中远半自动</td><td>M14/SVD</td><td>中距离精准打击</td></tr>
+          <tr><td><svg class="wgun" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-sniper"/></svg><b>狙击枪</b></td><td>远程秒杀</td><td>M700/AWM</td><td>架点控图、配合露娜</td></tr>
+          <tr><td><svg class="wgun" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-shotgun"/></svg><b>霰弹枪</b></td><td>贴脸秒</td><td>多型号</td><td>守房/近身防守</td></tr>
         </tbody>
       </table>
     </div>
@@ -438,6 +480,157 @@
 </div>
 
 <!-- 地图 -->
+<div class="view" id="v-maps">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>地图攻略</b></div>
+    <h1>地图攻略</h1><div class="bar"></div>
+    <p class="lead">记住关键点位与资源分布，让你永远比对手多想一步。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <h3 style="margin-bottom:12px;font-size:18px;color:var(--olive-bright)">全面战场 · 代表地图</h3>
+    <div class="grid g3" style="margin-bottom:26px">
+      <div class="map"><h3>航天发射中心 <span class="diff mid">中</span></h3><p>开阔地多，载具对抗激烈，中央发射塔为必争点。</p><ul><li>优先占侧翼小点积累优势</li><li>开阔地用烟雾掩护推进</li></ul></div>
+      <div class="map"><h3>潮汐监狱 <span class="diff hard">难</span></h3><p>多层室内结构，CQB 为王，听声辨位极重要。</p><ul><li>楼梯/拐角是老六高发区</li><li>支援位提前架枪封走道</li></ul></div>
+      <div class="map"><h3>长弓溪谷 <span class="diff mid">中</span></h3><p>山谷地形，狙击位与载具路线交织。</p><ul><li>高点架枪控视野</li><li>谷底走位防侧翼</li></ul></div>
+    </div>
+    <h3 style="margin-bottom:12px;font-size:18px;color:var(--olive-bright)">危险行动 · 撤离地图</h3>
+    <div class="grid g3">
+      <div class="map"><h3>零号大坝 <span class="diff easy">易</span></h3><p>入门图，结构相对简单，适合熟悉撤离流程。</p><ul><li>Administration 区常有高价值物资</li><li>撤离点固定，记好 timing</li></ul></div>
+      <div class="map"><h3>长弓溪谷 <span class="diff mid">中</span></h3><p>危险行动版，资源更肥但强敌更多。</p><ul><li>结合狙击位与室内搜刮</li><li>听到直升机声立刻准备撤离</li></ul></div>
+      <div class="map"><h3>巴克什 <span class="diff hard">难</span></h3><p>高级图，BOSS 与满装玩家云集，收益最高。</p><ul><li>带保险箱保关键物资</li><li>能撤就撤，别贪</li></ul></div>
+    </div>
+    <div class="note">通用心法：<b>进图前先在战术地图标记 2 条路线（主攻 + 备选撤离）</b>，临场不乱。</div>
+  </div>
+</div>
+
+<!-- 战术 -->
+<div class="view" id="v-tactics">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>战术与技巧</b></div>
+    <h1>战术与技巧</h1><div class="bar"></div>
+    <p class="lead">三角洲的胜负常在开枪之前就决定了——信息、走位与配合才是核心。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="grid g2">
+      <div class="card"><span class="ico">👂</span><h3>听声辨位</h3><p>戴耳机！脚步、换弹、载具声都能暴露方向。关闭背景音乐提升清晰度。</p></div>
+      <div class="card"><span class="ico">🧱</span><h3>预瞄与探头</h3><p>过拐角前准星预置敌人可能出现高度，配合侧身探头减少暴露。</p></div>
+      <div class="card"><span class="ico">💬</span><h3>精准报点</h3><p>用方位+距离+参照物报点（如「B 点二楼，两个，架着我」）。</p></div>
+      <div class="card"><span class="ico">🌫️</span><h3>烟雾与掩体</h3><p>进攻用烟封视线，防守用掩体卡角度。别站空地对枪。</p></div>
+      <div class="card"><span class="ico">🚙</span><h3>载具协同</h3><p>全面战场载具是移动火力点，但别 solo 开——配侦察报点才安全。</p></div>
+      <div class="card"><span class="ico">🔄</span><h3>轮换与补位</h3><p>一点受阻立刻轮换路线，避免被同一角度反复消耗。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 撤离 -->
+<div class="view" id="v-extract">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>撤离生存指南</b></div>
+    <h1>撤离生存指南</h1><div class="bar"></div>
+    <p class="lead">危险行动里，「活着带走」比「打死所有人」更重要。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="steps">
+      <div class="step"><h4>规划进场</h4><p>看战术地图选落点：新手优先边缘资源点，避开中心混战区。</p></div>
+      <div class="step"><h4>高效搜刮</h4><p>优先拿保险箱/高价值容器，普通杂物够本即可，别为垃圾拖延。</p></div>
+      <div class="step"><h4>完成任务</h4><p>若接了任务，按目标推进；任务与搜刮冲突时，先任务后物资。</p></div>
+      <div class="step"><h4>判断局势</h4><p>听枪声密度与直升机提示，评估是否还有油水，避免无谓缠斗。</p></div>
+      <div class="step"><h4>抢占撤离</h4><p>提前到达撤离点，清掉周围威胁再呼叫撤离，警惕余人埋伏。</p></div>
+      <div class="step"><h4>成功离场</h4><p>撤离读条期间保持警戒，登机前别松懈——很多人倒在这最后 10 秒。</p></div>
+    </div>
+    <div class="note">收益管理铁律：<b>把最值钱的东西放进保险箱，普通装备穿「舍得扔」的</b>。一身神装进图，等于把全部身家押上赌桌。</div>
+  </div>
+</div>
+
+<!-- 物品图鉴 -->
+<div class="view" id="v-items">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>高价值物品图鉴</b></div>
+    <h1>高价值物品图鉴</h1><div class="bar"></div>
+    <p class="lead">危险行动（搜打撤）里的顶级战利品。稀有度越高，越值得为它赌上一次撤离。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="items-grid">
+      <div class="item">
+        <div class="img"><span class="rar legend">传说</span><img src="assets/items/heart.png" alt="非洲之心"></div>
+        <div class="body"><h3>非洲之心</h3><div class="val">估值 ★★★★★ · 顶级珠宝</div>
+          <p>游戏内价值最高的珠宝之一，多出现于高级图（如巴克什）的保险箱/特殊容器。成功撤离即一夜暴富，是撤离玩家的终极梦想。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar special">特殊</span><img src="assets/items/mandel.png" alt="曼德尔砖"></div>
+        <div class="body"><h3>曼德尔砖</h3><div class="val">估值 ★★★★ · 特殊战利品</div>
+          <p>拾取后需在撤离后放入机密终端破译，可兑换限定奖励。被淘汰会掉落，是「高风险高回报」的代表。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar heir">传世</span><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%" aria-label="传世武器（示意图）"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4d98a"/><stop offset=".5" stop-color="#d8b34a"/><stop offset="1" stop-color="#a9821f"/></linearGradient><radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="rgba(216,179,74,.35)"/><stop offset="1" stop-color="rgba(216,179,74,0)"/></radialGradient></defs><ellipse cx="200" cy="150" rx="155" ry="115" fill="url(#glow)"/><g fill="url(#gold)" stroke="#7a5a16" stroke-width="2"><path d="M40 135 L92 122 L100 178 L46 188 Z"/><rect x="92" y="126" width="118" height="42" rx="4"/><path d="M120 168 L150 168 L142 222 L118 214 Z"/><path d="M170 168 L198 168 L192 225 L172 222 Z"/><rect x="210" y="128" width="70" height="26" rx="4"/><rect x="278" y="138" width="92" height="14" rx="3"/><rect x="368" y="134" width="14" height="22" rx="2"/><rect x="118" y="104" width="78" height="18" rx="6"/><rect x="150" y="120" width="12" height="8"/></g><text x="200" y="272" text-anchor="middle" fill="#e3c269" font-family="Oswald,sans-serif" font-size="20" letter-spacing="3">HEIRLOOM</text></svg></div>
+        <div class="body"><h3>传世武器</h3><div class="val">估值 ★★★★★ · 可继承</div>
+          <p>红/金品质的可继承武器，属性顶级且外观独特，是撤离玩家的终极追求，价值与面子兼得。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar heir">高价</span><img src="assets/items/gold.png" alt="金条"></div>
+        <div class="body"><h3>纯金金条</h3><div class="val">估值 ★★★★ · 稳健理财</div>
+          <p>占格少、变现快的高价物资，是「稳妥理财」首选。不确定局势时，囤金条最安心。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar epic">高价</span><img src="assets/items/watch.png" alt="名表"></div>
+        <div class="body"><h3>奢华名表</h3><div class="val">估值 ★★★★ · 收藏品</div>
+          <p>多出现于行政/保险箱，体积小价值高，是性价比极高的搜刮目标。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar rare">情报</span><img src="assets/items/keycard.png" alt="门禁卡与情报硬盘"></div>
+        <div class="body"><h3>门禁卡 / 情报硬盘</h3><div class="val">估值 ★★★ · 钥匙道具</div>
+          <p>开启密码房/特殊撤离的关键道具，本身有价且能撬动更高收益，遇到必拿。</p></div>
+      </div>
+    </div>
+    <div class="note">说明：以上图片为 <b>AI 风格化示意图</b>，用于帮助建立物品认知，<b>非游戏实机素材</b>；具体外观、名称与产出点位随版本变动，请以游戏内为准。</div>
+  </div>
+</div>
+
+<!-- 误区 -->
+<div class="view" id="v-mistakes">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>新手十大误区</b></div>
+    <h1>新手十大误区</h1><div class="bar"></div>
+    <p class="lead">避开这些坑，胜率立刻上一个台阶。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="mistake"><span class="x">✕</span><div><b>无脑冲锋：</b><span>没信息就突进，等于送人头。先听、再看、后动。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>空地站桩：</b><span>站在开阔地对枪，活不过 2 秒。永远贴掩体。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>忽视听声：</b><span>不开语音/不戴耳机，等于自废一臂。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>乱堆配件：</b><span>一味加射程牺牲机动，反而更难控。平衡才是王道。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>不报点：</b><span>只喊「有人」队友无法反应，精准报点是基本功。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>贪搜刮：</b><span>撤离模式为杂物恋战，往往血本无归。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>技能空放：</b><span>干员技能是翻盘资源，留关键时机再用。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>孤狼作战：</b><span>不跟队、不沟通，被包夹概率翻倍。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>死磕同角度：</b><span>被同一方向打就换路，别给对手练枪机会。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>不看小地图：</b><span>队友死亡红点就是敌人方向提示。</span></div></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="view" id="v-faq">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>常见问题 FAQ</b></div>
+    <h1>常见问题 FAQ</h1><div class="bar"></div>
+    <p class="lead">高频疑问速查。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <details class="acc"><summary>新手先玩哪个模式好？</summary><div class="a">建议先打<b>战役</b>熟悉操作，再去<b>全面战场</b>练团战，最后尝试<b>危险行动</b>。</div></details>
+    <details class="acc"><summary>压枪总是飘怎么办？</summary><div class="a">先确保配件以「补偿器+握把+枪托」控制后坐，再去训练场打靶找每把枪的节奏，靠肌肉记忆下拉。</div></details>
+    <details class="acc"><summary>撤离模式死了会损失什么？</summary><div class="a">随身未入保险箱的装备与物资会丢失；仓库里没带出来的不受影响。</div></details>
+    <details class="acc"><summary>单人能玩危险行动吗？</summary><div class="a">可以，但风险更高。建议至少双排或三排，侦察位+支援位能大幅提升生存率。</div></details>
+    <details class="acc"><summary>枪法一般也能上分吗？</summary><div class="a">能。三角洲重信息战与协同，报点准、走位稳、技能用得好，比纯枪法更稳。</div></details>
+    <details class="acc"><summary>移动端和 PC 能一起玩吗？</summary><div class="a">支持全平台，但匹配按输入设备分池，保证操作公平性。</div></details>
+  </div>
+</div>
+
+<!-- 改枪码库 -->
 <div class="view" id="v-maps">
   <div class="detail-head"><div class="wrap">
     <div class="crumb">目录 / <b>地图攻略</b></div>
@@ -606,7 +799,7 @@
     <div class="cat-h">突击步枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>AKM</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>AKM</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIAL2G02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz 改装代码大全2025</a></span></div>
@@ -615,7 +808,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>AK-12</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>AK-12</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6HJJN0G0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover T0神枪改枪码</a></span></div>
@@ -636,7 +829,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>AS Val</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>AS Val</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIAKVC02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
@@ -650,7 +843,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>腾龙突击步枪</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>腾龙突击步枪</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6HJKEQK0FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（45发常规版）</a></span></div>
@@ -674,7 +867,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>HK416 / K416</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>HK416 / K416</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6FTTLTK07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
@@ -688,7 +881,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>KC17</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>KC17</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6H3HEJC02DPSF0NMUGMIN</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
@@ -697,7 +890,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>K437</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>K437</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6H34IJC07JARDF32CHE1I</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
@@ -706,7 +899,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>PTR-32</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>PTR-32</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIAKTC02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
@@ -715,7 +908,7 @@
       </article>
 
       <article class="wcard">
-        <div class="wh"><h3>ASh-12 战斗步枪</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-ar"/></svg><h3>ASh-12 战斗步枪</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6GH3908064HLT38PTSGJ8</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
@@ -727,7 +920,7 @@
     <div class="cat-h">冲锋枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>SMG-45</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-smg"/></svg><h3>SMG-45</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6GT99F8001UAG24PPPV0T</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·30W）</a></span></div>
@@ -735,7 +928,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>MP7</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-smg"/></svg><h3>MP7</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6FVLU2G07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·40W）</a></span></div>
@@ -743,7 +936,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>P90</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-smg"/></svg><h3>P90</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6H1HI140B9I04M2JUJ0H8</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·40W）</a></span></div>
@@ -751,7 +944,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>SR-3M 紧凑突击步枪</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-smg"/></svg><h3>SR-3M 紧凑突击步枪</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6F6Q83O07ODLT6ETQT3GS</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
@@ -764,7 +957,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>UZI</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-smg"/></svg><h3>UZI</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIALBS02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
@@ -776,7 +969,7 @@
     <div class="cat-h">轻机枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>M249</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-lmg"/></svg><h3>M249</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIAV5802U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
@@ -784,7 +977,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>QJB201 轻机枪</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-lmg"/></svg><h3>QJB201 轻机枪</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6HJKI240FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（白热成像架点版）</a></span></div>
@@ -802,7 +995,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>PKM 通用机枪</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-lmg"/></svg><h3>PKM 通用机枪</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6G4BP6O068FPPKG0SPCQ9</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·50W）</a></span></div>
@@ -819,7 +1012,7 @@
     <div class="cat-h">战斗步枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>M7 战斗步枪</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-br"/></svg><h3>M7 战斗步枪</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6HJK9580FCDV4UPACJK76</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.vgover.com/news/180487" target="_blank" rel="noopener">vgover（红点稳定版）</a></span></div>
@@ -842,7 +1035,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>SCAR-H</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-br"/></svg><h3>SCAR-H</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIAUAK02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
@@ -854,7 +1047,7 @@
     <div class="cat-h">射手步枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>M14</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-dmr"/></svg><h3>M14</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIBB2C02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz（全面战场）</a></span></div>
@@ -867,7 +1060,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>PSG-1</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-dmr"/></svg><h3>PSG-1</h3><span class="mode bw">全面战场</span><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIBEK802U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz（全面战场）</a></span></div>
@@ -884,7 +1077,7 @@
     <div class="cat-h">狙击枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>AWM</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-sniper"/></svg><h3>AWM</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6GCOMIO03HDN3EE1QTI4I</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
@@ -897,7 +1090,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>M700</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-sniper"/></svg><h3>M700</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6FG5OGC051CKRTT084FIR</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://shouyou.3dmgame.com/gl/592600.html" target="_blank" rel="noopener">3DM 林树（烽火·60W）</a></span></div>
@@ -910,7 +1103,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>SV-98</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-sniper"/></svg><h3>SV-98</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6HTHQBG085N96GKA2CU5U</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="http://www.hawagame.com/wiki/20272.html" target="_blank" rel="noopener">hawagame S7（17W）</a></span></div>
@@ -918,7 +1111,7 @@
         </div>
       </article>
       <article class="wcard">
-        <div class="wh"><h3>R93</h3><span class="mode fh">烽火地带</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-sniper"/></svg><h3>R93</h3><span class="mode fh">烽火地带</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6HTHQ30085N96GKA2GU5U</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="http://www.hawagame.com/wiki/20272.html" target="_blank" rel="noopener">hawagame S7（27W）</a></span></div>
@@ -930,7 +1123,7 @@
     <div class="cat-h">霰弹枪</div>
     <div class="wgrid">
       <article class="wcard">
-        <div class="wh"><h3>S12K</h3><span class="mode bw">全面战场</span></div>
+        <div class="wh"><svg class="gun-ico" viewBox="0 0 120 48" aria-hidden="true"><use href="#gun-shotgun"/></svg><h3>S12K</h3><span class="mode bw">全面战场</span></div>
         <div class="cfg">
           <div class="cfg-top"><code class="cc">6EIAL9C02U9HU6AC38CQJ</code><button class="cpy" onclick="copyCode(this)">复制</button>
             <span class="src">来源：<a href="https://www.mopxz.com/news/59787.html" target="_blank" rel="noopener">mopxz</a></span></div>
