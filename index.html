@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三角洲行动 · 攻略菜单 | Delta Force 攻略中心</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e0b;--bg-soft:#14170f;--panel:#1a1e14;--panel-2:#22271a;--line:#333a26;
+    --olive:#7d8c3f;--olive-bright:#a4b85a;--gold:#c9a84a;--gold-bright:#e3c269;
+    --text:#e8ead9;--muted:#9aa183;
+    --r-legend:#c8553d;--r-special:#e08a3c;--r-heir:#d8b34a;--r-epic:#9b6fc9;--r-rare:#4f8fc8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Noto Sans SC","Oswald",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4,.stencil{font-family:"Oswald","Noto Sans SC",sans-serif;letter-spacing:.5px}
+  a{color:var(--gold-bright);text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .view{display:none}
+  .view.active{display:block;animation:fade .28s}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(12,14,11,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:"Oswald";font-weight:700;font-size:20px;color:var(--text);cursor:pointer}
+  .brand .tag{background:var(--olive);color:#0c0e0b;padding:2px 8px;border-radius:3px;font-size:12px;letter-spacing:2px}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .home-btn{display:none;align-items:center;gap:6px;background:var(--olive);color:#0c0e0b;padding:8px 15px;border-radius:6px;font-weight:600;font-size:14px;cursor:pointer}
+  .home-btn.show{display:inline-flex}
+
+  /* HERO (home) */
+  .hero{position:relative;min-height:62vh;display:flex;align-items:center;background:radial-gradient(120% 80% at 70% 10%,rgba(125,140,63,.20),transparent 55%),linear-gradient(160deg,#0c0e0b,#10130c 60%,#0a0c08);overflow:hidden}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.40;filter:saturate(.9) contrast(1.05)}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,11,.4),rgba(12,14,11,.85))}
+  .hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 22px}
+  .kicker{display:inline-flex;align-items:center;gap:9px;color:var(--gold-bright);font-family:"Oswald";letter-spacing:4px;font-size:13px;text-transform:uppercase;margin-bottom:16px}
+  .kicker::before{content:"";width:34px;height:2px;background:var(--gold)}
+  .hero h1{font-size:clamp(34px,6vw,68px);line-height:1.04;text-transform:uppercase;text-shadow:0 4px 24px rgba(0,0,0,.6)}
+  .hero h1 .accent{color:var(--gold-bright)}
+  .hero p.lead{margin:18px 0 26px;max-width:600px;color:#d6d9c6;font-size:clamp(14px,2vw,17px)}
+  .search{display:flex;max-width:480px;gap:0;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .search input{flex:1;background:transparent;border:none;outline:none;color:var(--text);padding:13px 16px;font-size:15px;font-family:inherit}
+  .search input::placeholder{color:var(--muted)}
+  .search .si{padding:0 16px;display:flex;align-items:center;color:var(--olive-bright);font-size:18px}
+
+  /* CATALOG */
+  .catalog{padding:54px 0 80px}
+  .cat-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:10px}
+  .cat-head h2{font-size:clamp(22px,3.5vw,32px);text-transform:uppercase}
+  .cat-head .sub{color:var(--muted);font-size:14px}
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.menu-grid{grid-template-columns:1fr}}
+  .dish{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;cursor:pointer;transition:.2s;position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:148px}
+  .dish:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.5)}
+  .dish .ico{font-size:30px;margin-bottom:12px}
+  .dish h3{font-size:19px;margin-bottom:7px;color:var(--text)}
+  .dish p{font-size:13.5px;color:var(--muted);flex:1}
+  .dish .go{margin-top:12px;color:var(--gold-bright);font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px}
+  .dish .lv{position:absolute;top:14px;right:14px;font-size:11px;font-family:"Oswald";letter-spacing:1px;padding:2px 9px;border-radius:20px;border:1px solid var(--olive);color:var(--olive-bright)}
+  .dish .em{position:absolute;right:-18px;bottom:-18px;font-size:90px;opacity:.06;pointer-events:none}
+
+  /* DETAIL */
+  .detail-head{position:relative;padding:46px 0 30px;border-bottom:1px solid var(--line);background:radial-gradient(100% 120% at 0 0,rgba(125,140,63,.12),transparent)}
+  .detail-head .crumb{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .detail-head .crumb b{color:var(--gold-bright)}
+  .detail-head h1{font-size:clamp(28px,5vw,46px);text-transform:uppercase}
+  .detail-head .bar{width:60px;height:3px;background:var(--gold);margin:14px 0}
+  .detail-head p.lead{color:var(--muted);max-width:780px}
+  .back{display:inline-flex;align-items:center;gap:7px;margin:14px 0 0;background:var(--panel-2);border:1px solid var(--line);color:var(--text);padding:9px 16px;border-radius:7px;cursor:pointer;font-weight:600;font-size:14px;transition:.18s}
+  .back:hover{border-color:var(--olive);color:var(--olive-bright)}
+  .detail-body{padding:40px 0 80px}
+
+  .sec{margin-bottom:38px}
+  .sec h2{font-size:22px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sec h2::before{content:"";width:6px;height:22px;background:var(--olive);border-radius:2px;display:inline-block}
+  .sec p{color:#d6d9c6;margin:8px 0}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .card h3{font-size:16px;margin-bottom:6px;color:var(--text)}
+  .card p{font-size:13.5px;color:var(--muted)}
+  .card .ico{font-size:22px;margin-bottom:8px;display:block}
+
+  .tabs{display:flex;gap:8px;margin:8px 0 18px;flex-wrap:wrap}
+  .tab{padding:9px 18px;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:7px;cursor:pointer;font-weight:600;font-size:14px}
+  .tab.active{background:var(--olive);color:#0c0e0b;border-color:var(--olive)}
+  .tab-panel{display:none}.tab-panel.active{display:block;animation:fade .3s}
+  .panel-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}
+  .panel-box ul{margin:10px 0 0 20px}.panel-box li{margin:7px 0;color:#d6d9c6}
+  .pill{display:inline-block;font-size:12.5px;background:var(--panel-2);border:1px solid var(--line);padding:4px 11px;border-radius:20px;color:var(--olive-bright);margin:4px 6px 0 0}
+
+  .op{background:linear-gradient(180deg,var(--panel),var(--bg-soft));border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .op .top{padding:16px 18px;border-bottom:1px solid var(--line);background:radial-gradient(120% 120% at 0 0,rgba(125,140,63,.16),transparent)}
+  .op .role{font-size:12px;letter-spacing:2px;color:var(--gold-bright);font-family:"Oswald);text-transform:uppercase}
+  .op h3{font-size:19px;margin:4px 0}
+  .op .body{padding:14px 18px 18px;font-size:14px;color:var(--muted)}
+  .op .skill{margin-top:9px;padding:9px 12px;background:var(--panel-2);border-left:3px solid var(--olive);border-radius:5px;font-size:13.5px;color:#d6d9c6}
+
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:540px}
+  th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line)}
+  th{background:var(--panel-2);color:var(--olive-bright);font-family:"Oswald";letter-spacing:1px;text-transform:uppercase;font-size:13px}
+  tbody tr:hover{background:var(--panel)}td b{color:var(--gold-bright)}
+
+  .map{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .map h3{display:flex;align-items:center;gap:10px;font-size:18px;margin-bottom:4px}
+  .diff{font-size:12px;padding:2px 9px;border-radius:20px;font-family:"Oswald";letter-spacing:1px}
+  .diff.easy{background:rgba(95,156,95,.18);color:var(--ok)}.diff.mid{background:rgba(201,168,74,.18);color:var(--gold-bright)}.diff.hard{background:rgba(200,85,61,.18);color:var(--r-legend)}
+  .map p{font-size:13.5px;color:var(--muted);margin:9px 0}
+  .map ul{margin:6px 0 0 18px;font-size:13.5px;color:#d6d9c6}.map ul li{margin:5px 0}
+
+  .steps{counter-reset:step}
+  .step{position:relative;padding:16px 18px 16px 60px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:11px}
+  .step::before{counter-increment:step;content:counter(step);position:absolute;left:16px;top:16px;width:30px;height:30px;border-radius:50%;background:var(--olive);color:#0c0e0b;font-family:"Oswald";font-weight:700;display:flex;align-items:center;justify-content:center}
+  .step h4{font-size:15px;margin-bottom:3px}.step p{font-size:13.5px;color:var(--muted)}
+
+  .mistake{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--r-legend);border-radius:8px;margin-bottom:10px}
+  .mistake .x{font-family:"Oswald";color:var(--r-legend);font-size:17px;font-weight:700;flex-shrink:0}
+  .mistake b{color:var(--text)}.mistake span{font-size:13.5px;color:var(--muted)}
+
+  .acc{border:1px solid var(--line);border-radius:9px;margin-bottom:10px;overflow:hidden;background:var(--panel)}
+  .acc summary{cursor:pointer;padding:15px 20px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:15px}
+  .acc summary::-webkit-details-marker{display:none}.acc summary::after{content:"+";font-family:"Oswald";font-size:22px;color:var(--olive-bright);transition:.2s}
+  .acc[open] summary::after{transform:rotate(45deg)}.acc .a{padding:0 20px 16px;color:var(--muted);font-size:14px}
+
+  .note{background:rgba(125,140,63,.10);border:1px solid var(--olive);border-radius:9px;padding:14px 18px;font-size:14px;color:#d6d9c6;margin:16px 0}
+  .note b{color:var(--gold-bright)}.note::before{content:"◆ ";color:var(--olive-bright)}
+
+  /* ITEMS GALLERY */
+  .items-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:900px){.items-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.items-grid{grid-template-columns:1fr}}
+  .item{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}
+  .item:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 14px 40px rgba(0,0,0,.5)}
+  .item .img{aspect-ratio:4/3;background:radial-gradient(120% 120% at 50% 20%,#20271a,#0c0e0b);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+  .item .img img{width:100%;height:100%;object-fit:cover}
+  .item .rar{position:absolute;top:10px;left:10px;font-size:11px;font-family:"Oswald";letter-spacing:1px;padding:3px 10px;border-radius:20px;font-weight:600;color:#0c0e0b}
+  .rar.legend{background:var(--r-legend)}.rar.special{background:var(--r-special)}.rar.heir{background:var(--r-heir)}.rar.epic{background:var(--r-epic);color:#fff}.rar.rare{background:var(--r-rare);color:#fff}
+  .item .body{padding:15px 16px 18px}
+  .item h3{font-size:17px;margin-bottom:4px}
+  .item .val{font-size:12.5px;color:var(--gold-bright);font-family:"Oswald";letter-spacing:1px;margin-bottom:8px}
+  .item p{font-size:13px;color:var(--muted)}
+
+  footer{background:var(--bg-soft);padding:40px 0 56px;text-align:center;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line)}
+  .disclaimer{max-width:760px;margin:12px auto 0;font-size:12px;color:#7c8268;line-height:1.7}
+  #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--olive),var(--gold));width:0;z-index:99;transition:width .15s}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-inner wrap">
+    <div class="brand" onclick="goHome()">DELTA FORCE<span class="tag">攻略</span></div>
+    <div class="nav-right">
+      <div class="home-btn" id="homeBtn" onclick="goHome()">⌂ 目录</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HOME / 目录 ============ -->
+<div class="view active" id="home">
+  <header class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-inner">
+      <span class="kicker">TACTICAL FPS · 攻略中心</span>
+      <h1>三角洲行动<br><span class="accent">DELTA FORCE</span> 攻略菜单</h1>
+      <p class="lead">像点外卖一样挑攻略：先逛目录，看中哪篇点进去即可。入门到进阶，一篇不落。</p>
+      <div class="search">
+        <span class="si">🔍</span>
+        <input id="q" type="text" placeholder="搜攻略：模式 / 干员 / 武器 / 撤离 / 物品…" oninput="filterMenu()">
+      </div>
+    </div>
+  </header>
+
+  <div class="catalog wrap">
+    <div class="cat-head">
+      <div><h2>全部攻略</h2><div class="sub">共 10 篇 · 点击任意卡片查看详情</div></div>
+    </div>
+    <div class="menu-grid" id="menu">
+      <div class="dish" data-view="v-overview" data-k="概览 入门 是什么">
+        <span class="lv">入门</span><span class="em">🎯</span>
+        <span class="ico">🎯</span><h3>游戏概览</h3>
+        <p>三角洲行动是什么、平台与三大量核心模式定位，先建立全局认知。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-modes" data-k="模式 全面战场 危险行动 撤离 战役 玩法">
+        <span class="lv">入门</span><span class="em">⚔️</span>
+        <span class="ico">⚔️</span><h3>模式详解</h3>
+        <p>全面战场、危险行动（搜打撤）、战役的胜负规则与核心循环。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-operators" data-k="干员 露娜 红狼 牧羊人 蜂医 泰瑞 凯 角色">
+        <span class="lv">资料</span><span class="em">🪖</span>
+        <span class="ico">🪖</span><h3>干员图鉴</h3>
+        <p>各干员定位、招牌技能与适配打法，组队不踩坑。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-weapons" data-k="武器 改枪 配件 压枪 突击步枪 狙击 枪械">
+        <span class="lv">进阶</span><span class="em">🔫</span>
+        <span class="ico">🔫</span><h3>武器与改枪</h3>
+        <p>枪械分类、配件选择与压枪思路，打造稳定输出。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-maps" data-k="地图 点位 大坝 溪谷 巴克什 航天 监狱">
+        <span class="lv">进阶</span><span class="em">🗺️</span>
+        <span class="ico">🗺️</span><h3>地图攻略</h3>
+        <p>关键点位、进攻路线与资源分布，提前预判敌人。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-tactics" data-k="战术 技巧 听声 报点 身法 协同 团队">
+        <span class="lv">进阶</span><span class="em">🧠</span>
+        <span class="ico">🧠</span><h3>战术与技巧</h3>
+        <p>身法、听声、报点与团队协同的通用原则。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-extract" data-k="撤离 生存 搜打撤 收益 风险  helicopters">
+        <span class="lv">进阶</span><span class="em">🚁</span>
+        <span class="ico">🚁</span><h3>撤离生存指南</h3>
+        <p>危险行动的风险收益管理与撤离时机判断。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-items" data-k="高价值 物品 图鉴 钻石 曼德尔砖 金条 传世武器 战利品">
+        <span class="lv">资料</span><span class="em">💎</span>
+        <span class="ico">💎</span><h3>高价值物品图鉴</h3>
+        <p>撤离模式里的顶级战利品一览，含稀有度、出处与价值。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-mistakes" data-k="误区 新手 错误 避坑">
+        <span class="lv">入门</span><span class="em">⚠️</span>
+        <span class="ico">⚠️</span><h3>新手十大误区</h3>
+        <p>避开这些坑，胜率立刻上一个台阶。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+      <div class="dish" data-view="v-faq" data-k="faq 常见问题 疑问 解答">
+        <span class="lv">入门</span><span class="em">❓</span>
+        <span class="ico">❓</span><h3>常见问题 FAQ</h3>
+        <p>高频疑问速查，少走弯路。</p>
+        <div class="go">查看攻略 →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DETAIL VIEWS ============ -->
+
+<!-- 概览 -->
+<div class="view" id="v-overview">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>游戏概览</b></div>
+    <h1>游戏概览</h1><div class="bar"></div>
+    <p class="lead">《三角洲行动》（Delta Force）是 Team Jade 研发、腾讯/Level Infinite 发行的全平台免费战术射击游戏，主打「大规模对抗」与「搜打撤」双体验，并附带单人战役。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="grid g3">
+      <div class="card"><span class="ico">🌐</span><h3>全平台互通</h3><p>PC、主机与移动端互通，匹配按输入设备分池，保证公平。</p></div>
+      <div class="card"><span class="ico">💰</span><h3>免费游玩</h3><p>本体免费，付费点主要为外观与 Battle Pass，不影响数值强度。</p></div>
+      <div class="card"><span class="ico">🎖️</span><h3>硬核 tactical</h3><p>强调信息战、团队协同与资源管理，适合喜欢思考的玩家。</p></div>
+    </div>
+    <div class="note">提示：游戏持续更新赛季内容，干员技能、武器数值与地图会随版本调整。本攻略给出<b>通用方法论</b>，具体数值请以游戏内为准。</div>
+  </div>
+</div>
+
+<!-- 模式 -->
+<div class="view" id="v-modes">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>模式详解</b></div>
+    <h1>模式详解</h1><div class="bar"></div>
+    <p class="lead">三大模式规则完全不同，先选对「你要玩什么」，再谈技巧。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="tabs">
+      <div class="tab active" data-tab="warfare">全面战场</div>
+      <div class="tab" data-tab="hazard">危险行动（撤离）</div>
+      <div class="tab" data-tab="campaign">战役</div>
+    </div>
+    <div class="tab-panel active" id="warfare">
+      <div class="panel-box">
+        <h3 style="font-size:22px;margin-bottom:6px">全面战场 · Warfare</h3>
+        <p style="color:var(--muted)">32v32 大规模据点攻防，融合步战、载具与指挥官系统。</p>
+        <ul>
+          <li><b>目标：</b>占领并守住战略据点，消耗对方兵力值至零即获胜。</li>
+          <li><b>载具：</b>坦克、装甲车、武装直升机、快艇等，需团队配合争夺。</li>
+          <li><b>兵种协同：</b>突击/支援/侦察/工程四类干员互补，复活与补给靠支援位。</li>
+          <li><b>指挥官：</b>可呼叫火力支援、侦察与空投，是翻盘关键资源。</li>
+        </ul>
+        <div style="margin-top:12px"><span class="pill">32v32</span><span class="pill">载具对抗</span><span class="pill">据点占领</span><span class="pill">指挥官系统</span></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="hazard">
+      <div class="panel-box">
+        <h3 style="font-size:22px;margin-bottom:6px">危险行动 · Hazard Operations（搜打撤）</h3>
+        <p style="color:var(--muted)">PvPvE 撤离玩法：带装备进图、搜刮、完成任务，再乘直升机撤离。阵亡则丢失随身物资。</p>
+        <ul>
+          <li><b>核心循环：</b>进场 → 搜刮/做任务 → 抢占撤离点 → 成功撤离带走收益。</li>
+          <li><b>威胁：</b>AI 敌人（游荡兵、BOSS）、其他玩家小队与时间压力。</li>
+          <li><b>资产管理：</b>仓库/保险箱机制决定哪些物资「死了也保」。</li>
+          <li><b>撤离：</b>固定撤离点 + 限时战术撤离，Timing 决定生死。</li>
+        </ul>
+        <div style="margin-top:12px"><span class="pill">PvPvE</span><span class="pill">搜刮撤离</span><span class="pill">装备有损</span><span class="pill">小队 3 人</span></div>
+      </div>
+    </div>
+    <div class="tab-panel" id="campaign">
+      <div class="panel-box">
+        <h3 style="font-size:22px;margin-bottom:6px">战役 · Campaign</h3>
+        <p style="color:var(--muted)">单人剧情战役，以经典「黑鹰坠落」摩加迪沙行动为蓝本。</p>
+        <ul>
+          <li><b>体验：</b>线性剧情 + 战术关卡，适合熟悉操作与枪感。</li>
+          <li><b>价值：</b>新玩家练手最佳入口，无物资损失压力。</li>
+          <li><b>联动：</b>战役中解锁的外观/经验可带入其他模式。</li>
+        </ul>
+        <div style="margin-top:12px"><span class="pill">单人</span><span class="pill">剧情</span><span class="pill">新手练手</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 干员 -->
+<div class="view" id="v-operators">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>干员图鉴</b></div>
+    <h1>干员图鉴</h1><div class="bar"></div>
+    <p class="lead">每个干员有独特定位与技能。组队时尽量覆盖四类，形成互补。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="grid g3">
+      <div class="op"><div class="top"><div class="role">侦察 RECON</div><h3>露娜 Luna</h3></div><div class="body">远程信息位，技能可标记敌人位置共享全队。<b>适合架枪、控图与报点。</b><div class="skill">招牌：侦察箭/传感装置，暴露范围内敌人轮廓，是团队「眼睛」。</div></div></div>
+      <div class="op"><div class="top"><div class="role">突击 ASSAULT</div><h3>红狼 Red Wolf</h3></div><div class="body">高机动近战突破手，技能快速位移接敌/脱离。<b>适合绕后、抢点与残局。</b><div class="skill">招牌：钩爪位移 + 爆发状态，短时大幅提升机动与火力。</div></div></div>
+      <div class="op"><div class="top"><div class="role">支援 SUPPORT</div><h3>牧羊人 Shepherd</h3></div><div class="body">团队续航核心，技能探测敌方并扰乱。<b>适合占点、保人与控场。</b><div class="skill">招牌：声波无人机，侦测开火敌人并施加干扰/削弱。</div></div></div>
+      <div class="op"><div class="top"><div class="role">侦察 RECON</div><h3>蜂医 Hackclaw</h3></div><div class="body">带侦察犬的情报/支援位。<b>适合探点、标记与快速救援。</b><div class="skill">招牌：侦察犬自动巡逻标记敌人，并具备救援能力。</div></div></div>
+      <div class="op"><div class="top"><div class="role">突击 ASSAULT</div><h3>泰瑞 Terry</h3></div><div class="body">灵活突击位，强调快速接敌与压制。<b>适合正面突破与火力覆盖。</b><div class="skill">招牌：高机动位移 + 范围压制，制造局部人数优势。</div></div></div>
+      <div class="op"><div class="top"><div class="role">突击 ASSAULT</div><h3>凯 Kai</h3></div><div class="body">爆发输出位，擅长区域清理。<b>适合清房、压制掩体后敌人。</b><div class="skill">招牌：范围杀伤/压制型技能，对固守之敌效果显著。</div></div></div>
+    </div>
+    <div class="note">组队建议：1 侦察（报点）+ 1 支援（续航）+ 2 突击（输出）是通用万金油阵容。撤离模式里侦察位优先级最高。</div>
+  </div>
+</div>
+
+<!-- 武器 -->
+<div class="view" id="v-weapons">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>武器与改枪</b></div>
+    <h1>武器与改枪</h1><div class="bar"></div>
+    <p class="lead">枪法之外，配件搭配决定后坐力、射程与操控。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>类别</th><th>定位</th><th>代表枪型</th><th>适用场景</th></tr></thead>
+        <tbody>
+          <tr><td><b>突击步枪</b></td><td>全能主力</td><td>AKM/M4/HK416/AUG</td><td>中近距离通用，最推荐新手</td></tr>
+          <tr><td><b>冲锋枪</b></td><td>近战爆发</td><td>MP5/Vector/P90</td><td>室内/巷战/CQB</td></tr>
+          <tr><td><b>轻机枪</b></td><td>压制火力</td><td>M249/M250</td><td>架点/守撤离/载具对枪</td></tr>
+          <tr><td><b>射手步枪</b></td><td>中远半自动</td><td>M14/SVD</td><td>中距离精准打击</td></tr>
+          <tr><td><b>狙击枪</b></td><td>远程秒杀</td><td>M700/AWM</td><td>架点控图、配合露娜</td></tr>
+          <tr><td><b>霰弹枪</b></td><td>贴脸秒</td><td>多型号</td><td>守房/近身防守</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 style="margin:28px 0 12px;font-size:18px">配件改造思路</h3>
+    <div class="grid g2">
+      <div class="card"><span class="ico">🎯</span><h3>枪口 / 枪管</h3><p>补偿器降垂直后坐，消音器保隐蔽（撤离模式更值钱）。长枪管加射程但降机动。</p></div>
+      <div class="card"><span class="ico">🤚</span><h3>握把 / 枪托</h3><p>握把控水平晃动，枪托提升稳定与开镜速度，是压枪核心。</p></div>
+      <div class="card"><span class="ico">🔭</span><h3>瞄具</h3><p>红点/全息近战，高倍镜远程。撤离模式带镜进图风险高，按需取舍。</p></div>
+      <div class="card"><span class="ico">📦</span><h3>弹匣 / 激光</h3><p>扩容弹匣减少换弹，激光提升腰射，适合冲锋枪近战流。</p></div>
+    </div>
+    <div class="note">压枪原则：<b>先控垂直后坐（补偿器+握把），再控水平（枪托+练习拉枪）</b>。训练场打靶 30 秒找节奏，比盲目堆配件更有效。</div>
+  </div>
+</div>
+
+<!-- 地图 -->
+<div class="view" id="v-maps">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>地图攻略</b></div>
+    <h1>地图攻略</h1><div class="bar"></div>
+    <p class="lead">记住关键点位与资源分布，让你永远比对手多想一步。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <h3 style="margin-bottom:12px;font-size:18px;color:var(--olive-bright)">全面战场 · 代表地图</h3>
+    <div class="grid g3" style="margin-bottom:26px">
+      <div class="map"><h3>航天发射中心 <span class="diff mid">中</span></h3><p>开阔地多，载具对抗激烈，中央发射塔为必争点。</p><ul><li>优先占侧翼小点积累优势</li><li>开阔地用烟雾掩护推进</li></ul></div>
+      <div class="map"><h3>潮汐监狱 <span class="diff hard">难</span></h3><p>多层室内结构，CQB 为王，听声辨位极重要。</p><ul><li>楼梯/拐角是老六高发区</li><li>支援位提前架枪封走道</li></ul></div>
+      <div class="map"><h3>长弓溪谷 <span class="diff mid">中</span></h3><p>山谷地形，狙击位与载具路线交织。</p><ul><li>高点架枪控视野</li><li>谷底走位防侧翼</li></ul></div>
+    </div>
+    <h3 style="margin-bottom:12px;font-size:18px;color:var(--olive-bright)">危险行动 · 撤离地图</h3>
+    <div class="grid g3">
+      <div class="map"><h3>零号大坝 <span class="diff easy">易</span></h3><p>入门图，结构相对简单，适合熟悉撤离流程。</p><ul><li>Administration 区常有高价值物资</li><li>撤离点固定，记好 timing</li></ul></div>
+      <div class="map"><h3>长弓溪谷 <span class="diff mid">中</span></h3><p>危险行动版，资源更肥但强敌更多。</p><ul><li>结合狙击位与室内搜刮</li><li>听到直升机声立刻准备撤离</li></ul></div>
+      <div class="map"><h3>巴克什 <span class="diff hard">难</span></h3><p>高级图，BOSS 与满装玩家云集，收益最高。</p><ul><li>带保险箱保关键物资</li><li>能撤就撤，别贪</li></ul></div>
+    </div>
+    <div class="note">通用心法：<b>进图前先在战术地图标记 2 条路线（主攻 + 备选撤离）</b>，临场不乱。</div>
+  </div>
+</div>
+
+<!-- 战术 -->
+<div class="view" id="v-tactics">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>战术与技巧</b></div>
+    <h1>战术与技巧</h1><div class="bar"></div>
+    <p class="lead">三角洲的胜负常在开枪之前就决定了——信息、走位与配合才是核心。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="grid g2">
+      <div class="card"><span class="ico">👂</span><h3>听声辨位</h3><p>戴耳机！脚步、换弹、载具声都能暴露方向。关闭背景音乐提升清晰度。</p></div>
+      <div class="card"><span class="ico">🧱</span><h3>预瞄与探头</h3><p>过拐角前准星预置敌人可能出现高度，配合侧身探头减少暴露。</p></div>
+      <div class="card"><span class="ico">💬</span><h3>精准报点</h3><p>用方位+距离+参照物报点（如「B 点二楼，两个，架着我」）。</p></div>
+      <div class="card"><span class="ico">🌫️</span><h3>烟雾与掩体</h3><p>进攻用烟封视线，防守用掩体卡角度。别站空地对枪。</p></div>
+      <div class="card"><span class="ico">🚙</span><h3>载具协同</h3><p>全面战场载具是移动火力点，但别 solo 开——配侦察报点才安全。</p></div>
+      <div class="card"><span class="ico">🔄</span><h3>轮换与补位</h3><p>一点受阻立刻轮换路线，避免被同一角度反复消耗。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 撤离 -->
+<div class="view" id="v-extract">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>撤离生存指南</b></div>
+    <h1>撤离生存指南</h1><div class="bar"></div>
+    <p class="lead">危险行动里，「活着带走」比「打死所有人」更重要。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="steps">
+      <div class="step"><h4>规划进场</h4><p>看战术地图选落点：新手优先边缘资源点，避开中心混战区。</p></div>
+      <div class="step"><h4>高效搜刮</h4><p>优先拿保险箱/高价值容器，普通杂物够本即可，别为垃圾拖延。</p></div>
+      <div class="step"><h4>完成任务</h4><p>若接了任务，按目标推进；任务与搜刮冲突时，先任务后物资。</p></div>
+      <div class="step"><h4>判断局势</h4><p>听枪声密度与直升机提示，评估是否还有油水，避免无谓缠斗。</p></div>
+      <div class="step"><h4>抢占撤离</h4><p>提前到达撤离点，清掉周围威胁再呼叫撤离，警惕余人埋伏。</p></div>
+      <div class="step"><h4>成功离场</h4><p>撤离读条期间保持警戒，登机前别松懈——很多人倒在这最后 10 秒。</p></div>
+    </div>
+    <div class="note">收益管理铁律：<b>把最值钱的东西放进保险箱，普通装备穿「舍得扔」的</b>。一身神装进图，等于把全部身家押上赌桌。</div>
+  </div>
+</div>
+
+<!-- 物品图鉴 -->
+<div class="view" id="v-items">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>高价值物品图鉴</b></div>
+    <h1>高价值物品图鉴</h1><div class="bar"></div>
+    <p class="lead">危险行动（搜打撤）里的顶级战利品。稀有度越高，越值得为它赌上一次撤离。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="items-grid">
+      <div class="item">
+        <div class="img"><span class="rar legend">传说</span><img src="assets/items/heart.png" alt="非洲之心"></div>
+        <div class="body"><h3>非洲之心</h3><div class="val">估值 ★★★★★ · 顶级珠宝</div>
+          <p>游戏内价值最高的珠宝之一，多出现于高级图（如巴克什）的保险箱/特殊容器。成功撤离即一夜暴富，是撤离玩家的终极梦想。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar special">特殊</span><img src="assets/items/mandel.png" alt="曼德尔砖"></div>
+        <div class="body"><h3>曼德尔砖</h3><div class="val">估值 ★★★★ · 特殊战利品</div>
+          <p>拾取后需在撤离后放入机密终端破译，可兑换限定奖励。被淘汰会掉落，是「高风险高回报」的代表。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar heir">传世</span><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%" aria-label="传世武器（示意图）"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4d98a"/><stop offset=".5" stop-color="#d8b34a"/><stop offset="1" stop-color="#a9821f"/></linearGradient><radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="rgba(216,179,74,.35)"/><stop offset="1" stop-color="rgba(216,179,74,0)"/></radialGradient></defs><ellipse cx="200" cy="150" rx="155" ry="115" fill="url(#glow)"/><g fill="url(#gold)" stroke="#7a5a16" stroke-width="2"><path d="M40 135 L92 122 L100 178 L46 188 Z"/><rect x="92" y="126" width="118" height="42" rx="4"/><path d="M120 168 L150 168 L142 222 L118 214 Z"/><path d="M170 168 L198 168 L192 225 L172 222 Z"/><rect x="210" y="128" width="70" height="26" rx="4"/><rect x="278" y="138" width="92" height="14" rx="3"/><rect x="368" y="134" width="14" height="22" rx="2"/><rect x="118" y="104" width="78" height="18" rx="6"/><rect x="150" y="120" width="12" height="8"/></g><text x="200" y="272" text-anchor="middle" fill="#e3c269" font-family="Oswald,sans-serif" font-size="20" letter-spacing="3">HEIRLOOM</text></svg></div>
+        <div class="body"><h3>传世武器</h3><div class="val">估值 ★★★★★ · 可继承</div>
+          <p>红/金品质的可继承武器，属性顶级且外观独特，是撤离玩家的终极追求，价值与面子兼得。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar heir">高价</span><img src="assets/items/gold.png" alt="金条"></div>
+        <div class="body"><h3>纯金金条</h3><div class="val">估值 ★★★★ · 稳健理财</div>
+          <p>占格少、变现快的高价物资，是「稳妥理财」首选。不确定局势时，囤金条最安心。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar epic">高价</span><img src="assets/items/watch.png" alt="名表"></div>
+        <div class="body"><h3>奢华名表</h3><div class="val">估值 ★★★★ · 收藏品</div>
+          <p>多出现于行政/保险箱，体积小价值高，是性价比极高的搜刮目标。</p></div>
+      </div>
+      <div class="item">
+        <div class="img"><span class="rar rare">情报</span><img src="assets/items/keycard.png" alt="门禁卡与情报硬盘"></div>
+        <div class="body"><h3>门禁卡 / 情报硬盘</h3><div class="val">估值 ★★★ · 钥匙道具</div>
+          <p>开启密码房/特殊撤离的关键道具，本身有价且能撬动更高收益，遇到必拿。</p></div>
+      </div>
+    </div>
+    <div class="note">说明：以上图片为 <b>AI 风格化示意图</b>，用于帮助建立物品认知，<b>非游戏实机素材</b>；具体外观、名称与产出点位随版本变动，请以游戏内为准。</div>
+  </div>
+</div>
+
+<!-- 误区 -->
+<div class="view" id="v-mistakes">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>新手十大误区</b></div>
+    <h1>新手十大误区</h1><div class="bar"></div>
+    <p class="lead">避开这些坑，胜率立刻上一个台阶。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <div class="mistake"><span class="x">✕</span><div><b>无脑冲锋：</b><span>没信息就突进，等于送人头。先听、再看、后动。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>空地站桩：</b><span>站在开阔地对枪，活不过 2 秒。永远贴掩体。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>忽视听声：</b><span>不开语音/不戴耳机，等于自废一臂。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>乱堆配件：</b><span>一味加射程牺牲机动，反而更难控。平衡才是王道。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>不报点：</b><span>只喊「有人」队友无法反应，精准报点是基本功。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>贪搜刮：</b><span>撤离模式为杂物恋战，往往血本无归。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>技能空放：</b><span>干员技能是翻盘资源，留关键时机再用。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>孤狼作战：</b><span>不跟队、不沟通，被包夹概率翻倍。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>死磕同角度：</b><span>被同一方向打就换路，别给对手练枪机会。</span></div></div>
+    <div class="mistake"><span class="x">✕</span><div><b>不看小地图：</b><span>队友死亡红点就是敌人方向提示。</span></div></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="view" id="v-faq">
+  <div class="detail-head"><div class="wrap">
+    <div class="crumb">目录 / <b>常见问题 FAQ</b></div>
+    <h1>常见问题 FAQ</h1><div class="bar"></div>
+    <p class="lead">高频疑问速查。</p>
+    <button class="back" onclick="goHome()">← 返回目录</button>
+  </div></div>
+  <div class="detail-body wrap">
+    <details class="acc"><summary>新手先玩哪个模式好？</summary><div class="a">建议先打<b>战役</b>熟悉操作，再去<b>全面战场</b>练团战，最后尝试<b>危险行动</b>。</div></details>
+    <details class="acc"><summary>压枪总是飘怎么办？</summary><div class="a">先确保配件以「补偿器+握把+枪托」控制后坐，再去训练场打靶找每把枪的节奏，靠肌肉记忆下拉。</div></details>
+    <details class="acc"><summary>撤离模式死了会损失什么？</summary><div class="a">随身未入保险箱的装备与物资会丢失；仓库里没带出来的不受影响。</div></details>
+    <details class="acc"><summary>单人能玩危险行动吗？</summary><div class="a">可以，但风险更高。建议至少双排或三排，侦察位+支援位能大幅提升生存率。</div></details>
+    <details class="acc"><summary>枪法一般也能上分吗？</summary><div class="a">能。三角洲重信息战与协同，报点准、走位稳、技能用得好，比纯枪法更稳。</div></details>
+    <details class="acc"><summary>移动端和 PC 能一起玩吗？</summary><div class="a">支持全平台，但匹配按输入设备分池，保证操作公平性。</div></details>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="justify-content:center">DELTA FORCE<span class="tag">攻略</span></div>
+    <div>战术、协同、生存——祝你在三角洲里每一次撤离都满载而归。</div>
+    <p class="disclaimer">免责声明：本页面为玩家自发整理的攻略手册，内容基于公开玩法与通用方法论编写，干员技能、武器数值、地图与版本机制会随官方更新变动，具体请以游戏内最新内容为准。高价值物品图片为 AI 风格化示意图，非游戏实机素材，相关名称与素材版权归原权利人所有。本页面与游戏官方无隶属关系。</p>
+  </div>
+</footer>
+
+<script>
+  const homeBtn=document.getElementById('homeBtn');
+  function showView(id){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+    if(id==='home'){homeBtn.classList.remove('show');}else{homeBtn.classList.add('show');}
+  }
+  function goHome(){showView('home');}
+  document.querySelectorAll('.dish').forEach(d=>{
+    d.addEventListener('click',()=>showView(d.dataset.view));
+  });
+  // tabs inside detail
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      const scope=t.closest('.detail-body');
+      scope.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      scope.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      scope.querySelector('#'+t.dataset.tab).classList.add('active');
+    });
+  });
+  function filterMenu(){
+    const q=document.getElementById('q').value.trim().toLowerCase();
+    document.querySelectorAll('#menu .dish').forEach(d=>{
+      const hay=(d.querySelector('h3').textContent+d.querySelector('p').textContent+d.dataset.k).toLowerCase();
+      d.style.display=hay.includes(q)?'flex':'none';
+    });
+  }
+  // progress
+  const prog=document.getElementById('progress');
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  });
+</script>
+</body>
+</html>
